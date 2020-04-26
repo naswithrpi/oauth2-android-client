@@ -38,26 +38,11 @@
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_select_oauth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Select OAuth" />
-
-        <TextView
-            android:id="@+id/tv_client_identification_response"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Response:"
-            android:textSize="20sp" />
-
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:drawableStart="@drawable/ic_person_outline_black_24dp"
             android:drawablePadding="12dp"
             android:hint="Username" />
@@ -74,16 +59,34 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:text="Login" />
 
+        <Button
+            android:id="@+id/btn_select_oauth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:onClick="onClick"
+            android:text="Sign in using NASRPi" />
+
         <TextView
-            android:id="@+id/tv_auth_code_response"
+            android:id="@+id/tv_response"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Response:"
             android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

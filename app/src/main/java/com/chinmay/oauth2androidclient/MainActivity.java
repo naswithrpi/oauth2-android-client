@@ -1,7 +1,11 @@
 package com.chinmay.oauth2androidclient;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -54,9 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 tv_response.append(response.toString() + "\n");
                 ClientIdentificationRequest body = response.body();
                 if (body != null) {
+                    String redirectUrl = body.getRedirectionURL();
                     tv_response.append("====Body====\n");
                     tv_response.append("Client ID: " + body.getClientID() + "\n");
-                    tv_response.append("Redirect URL: " + body.getRedirectionURL());
+                    tv_response.append("Redirect URL: " + redirectUrl + "\n");
+
+                    redirectTo(redirectUrl);
                 }
             }
 
@@ -67,4 +74,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void redirectTo(String redirectUrl) {
+        Dialog dialog = new Dialog(this);
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.dialog_webpage
+                , null);
+        WebView webView = view.findViewById(R.id.web_view);
+        webView.setClickable(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(apiManager.getOAuthWebClientUrl());
+
+        dialog.setContentView(view);
+        dialog.show();
+    }
+
+
 }

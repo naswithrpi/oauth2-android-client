@@ -5,7 +5,8 @@ import com.chinmay.oauth2androidclient.apiservice.api.ClientIdentificationAPI;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.chinmay.oauth2androidclient.apiservice.APIConstants.OAUTH_BASE_URL;
+import static com.chinmay.oauth2androidclient.apiservice.APIConstants.getOAuthBaseUrl;
+import static com.chinmay.oauth2androidclient.apiservice.APIConstants.getOauthWebClientUrl;
 
 /**
  * Created by grandolf49 on 09-04-2020
@@ -17,7 +18,7 @@ public class APIManager {
 
     public APIManager() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(OAUTH_BASE_URL)
+                .baseUrl(getOAuthBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -32,4 +33,7 @@ public class APIManager {
         return clientIdentificationAPI;
     }
 
+    public String getOAuthWebClientUrl() {
+        return getOauthWebClientUrl();
+    }
 }

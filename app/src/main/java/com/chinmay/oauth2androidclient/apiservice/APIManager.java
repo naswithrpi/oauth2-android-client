@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.chinmay.oauth2androidclient.apiservice.APIConstants.getOAuthBaseUrl;
 import static com.chinmay.oauth2androidclient.apiservice.APIConstants.getOauthWebClientUrl;
+import static com.chinmay.oauth2androidclient.apiservice.APIConstants.setOauthServerPort;
 
 /**
  * Created by grandolf49 on 09-04-2020
@@ -35,5 +36,25 @@ public class APIManager {
 
     public String getOAuthWebClientUrl() {
         return getOauthWebClientUrl();
+    }
+
+    public String getServerIpAddress() {
+        return APIConstants.getServerIpAddress();
+    }
+
+    public String getOauthServerPort() {
+        return APIConstants.getOauthServerPort();
+    }
+
+    public void setServerIpAddress(String ipAddress) {
+        APIConstants.setServerIpAddress(ipAddress);
+    }
+
+    public void setServerPort(String port) {
+        setOauthServerPort(port);
+    }
+
+    public String getClientId() {
+        return APIConstants.getClientId();
     }
 }

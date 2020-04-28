@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
 
-import com.chinmay.oauth2androidclient.UserDetailsActivity;
+import com.chinmay.oauth2androidclient.activities.UserDetailsActivity;
 
 /**
  * Created by grandolf49 on 27-04-2020

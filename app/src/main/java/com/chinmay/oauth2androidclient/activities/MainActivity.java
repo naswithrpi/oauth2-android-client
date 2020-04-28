@@ -1,4 +1,4 @@
-package com.chinmay.oauth2androidclient;
+package com.chinmay.oauth2androidclient.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chinmay.oauth2androidclient.R;
 import com.chinmay.oauth2androidclient.apiservice.APIManager;
 import com.chinmay.oauth2androidclient.apiservice.JavaScriptNativeInterface;
 import com.chinmay.oauth2androidclient.apiservice.request.ClientIdentificationRequest;
@@ -19,12 +21,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.chinmay.oauth2androidclient.apiservice.APIConstants.CLIENT_ID;
-
 public class MainActivity extends AppCompatActivity {
 
     private ProgressBar pb;
     private TextView tv_response;
+    private EditText et_server_ip, et_server_port;
+
     private APIManager apiManager;
 
     @Override
@@ -34,8 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
         pb = findViewById(R.id.pb);
         tv_response = findViewById(R.id.tv_response);
+        et_server_ip = findViewById(R.id.et_server_ip);
+        et_server_port = findViewById(R.id.et_server_port);
 
         apiManager = new APIManager();
+
+        et_server_ip.setText(apiManager.getServerIpAddress());
+        et_server_port.setText(apiManager.getOauthServerPort());
     }
 
     public void onClick(View view) {
@@ -46,9 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginOAuth() {
         pb.setVisibility(View.VISIBLE);
+
+        String server_ip = et_server_ip.getText().toString().trim();
+        String server_port = et_server_port.getText().toString().trim();
+
+        apiManager.setServerIpAddress(server_ip);
+        apiManager.setServerPort(server_port);
+
         Call<ClientIdentificationRequest> call = apiManager.getClientIdentificationAPI()
                 .getClientIdentification(new ClientIdentificationRequest(
-                        CLIENT_ID, ""));
+                        apiManager.getClientId(), ""));
         call.enqueue(new Callback<ClientIdentificationRequest>() {
             @Override
             public void onResponse(Call<ClientIdentificationRequest> call

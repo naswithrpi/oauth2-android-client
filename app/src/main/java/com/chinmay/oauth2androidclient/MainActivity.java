@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chinmay.oauth2androidclient.apiservice.APIManager;
+import com.chinmay.oauth2androidclient.apiservice.JavaScriptNativeInterface;
 import com.chinmay.oauth2androidclient.apiservice.request.ClientIdentificationRequest;
 
 import retrofit2.Call;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         WebView webView = view.findViewById(R.id.web_view);
         webView.setClickable(true);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(new JavaScriptNativeInterface(this), "Android");
         webView.loadUrl(apiManager.getOAuthWebClientUrl());
 
         dialog.setContentView(view);

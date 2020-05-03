@@ -70,7 +70,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:onClick="onClick"
-            android:text="Sign in using NASRPi" />
+            android:text="Sign in using OAuth Service" />
 
         <TextView
             android:id="@+id/tv_response"

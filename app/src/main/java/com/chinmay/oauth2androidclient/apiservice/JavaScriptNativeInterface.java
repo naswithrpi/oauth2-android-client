@@ -1,5 +1,6 @@
 package com.chinmay.oauth2androidclient.apiservice;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
@@ -20,6 +21,7 @@ public class JavaScriptNativeInterface {
     public void showToast(String message) {
         Intent intent = new Intent(context, UserDetailsActivity.class);
         intent.putExtra("user", message);
+        ((Activity) context).finish();
         context.startActivity(intent);
     }
 }

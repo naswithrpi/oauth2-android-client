@@ -17,12 +17,11 @@ public class APIManager {
     private Retrofit retrofit;
     private ClientIdentificationAPI clientIdentificationAPI;
 
-    public APIManager() {
+    public void initializeRetrofit() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(getOAuthBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         initApis();
     }
 

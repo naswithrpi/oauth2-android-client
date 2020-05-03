@@ -1,8 +1,12 @@
 package com.chinmay.oauth2androidclient.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chinmay.oauth2androidclient.R;
@@ -23,6 +27,11 @@ public class UserDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         tv_username = findViewById(R.id.tv_username);
         tv_mobile = findViewById(R.id.tv_mobile);
@@ -47,5 +56,15 @@ public class UserDetailsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        return true;
     }
 }

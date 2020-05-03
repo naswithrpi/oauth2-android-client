@@ -60,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
         apiManager.setServerIpAddress(server_ip);
         apiManager.setServerPort(server_port);
 
+        apiManager.initializeRetrofit();
+
         Call<ClientIdentificationRequest> call = apiManager.getClientIdentificationAPI()
                 .getClientIdentification(new ClientIdentificationRequest(
-                        apiManager.getClientId(), ""));
+                        apiManager.getClientId(), "", "[userName, email, mobile, dateOfBirth]"));
         call.enqueue(new Callback<ClientIdentificationRequest>() {
             @Override
             public void onResponse(Call<ClientIdentificationRequest> call
@@ -77,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                     tv_response.append("====Body====\n");
                     tv_response.append("Client ID: " + body.getClientID() + "\n");
                     tv_response.append("Redirect URL: " + redirectUrl + "\n");
-
                     redirectTo(redirectUrl);
                 }
             }
@@ -99,11 +100,10 @@ public class MainActivity extends AppCompatActivity {
         webView.setClickable(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new JavaScriptNativeInterface(this), "Android");
-        webView.loadUrl(apiManager.getOAuthWebClientUrl());
+        webView.loadUrl(redirectUrl);
 
         dialog.setContentView(view);
         dialog.show();
     }
-
 
 }

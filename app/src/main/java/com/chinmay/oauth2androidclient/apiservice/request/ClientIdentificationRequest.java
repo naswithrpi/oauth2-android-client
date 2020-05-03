@@ -9,24 +9,23 @@ public class ClientIdentificationRequest {
 
     private String redirectionURL;
 
-    public ClientIdentificationRequest(String clientID, String redirectionURL) {
+    private String scope;
+
+    public ClientIdentificationRequest(String clientID, String redirectionURL, String scope) {
         this.clientID = clientID;
         this.redirectionURL = redirectionURL;
+        this.scope = scope;
     }
 
     public String getClientID() {
         return clientID;
     }
 
-    public void setClientID(String clientID) {
-        this.clientID = clientID;
-    }
-
     public String getRedirectionURL() {
         return redirectionURL;
     }
 
-    public void setRedirectionURL(String redirectionURL) {
-        this.redirectionURL = redirectionURL;
+    public String getScope() {
+        return scope;
     }
 }
